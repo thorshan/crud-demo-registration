@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+<!--Navigation-->
+<nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+    <div class="container">
+        <a class="navbar-brand">CRUD - User Registration</a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/add}">
+                        <i class="fa-solid fa-user me-2"></i>Create
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Home -->
+
+<div class="container my-3">
+    <a class="btn btn-primary" th:href="@{/add}">Add New Entity</a>
+</div>
+
+<div class="container">
+    <table class="table table-hover">
+        <caption th:text="'Total : ' + ${userCount} + ' users'"></caption>
+        <thead class="table-dark">
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Gender</th>
+            <th scope="col">City</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody class="table-group-divider">
+        <tr th:each="user, index : ${user}">
+            <td th:text="${index.count}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.phone}"></td>
+            <td th:text="${user.gender}"></td>
+            <td th:text="${user.city}"></td>
+            <td>
+                <a th:href="@{/user/edit/{id}(id=${user.id})}"><i class="fa-solid fa-pen-to-square me-3 text-primary"></i></a>
+                <a th:href="@{/index/{id}(id=${user.id})}"><i class="fa-solid fa-trash-can text-danger"></i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+    <script th:src="@{js/bootstrap.min.js}"></script>
+    <script th:src="@{js/jquery.min.js}"></script>
+</body>
+</html>
